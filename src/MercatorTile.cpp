@@ -1,8 +1,9 @@
+#define _USE_MATH_DEFINES
 #include "MercatorTile.h"
 #include <algorithm>
+#include <cmath>
 #include <deque>
 #include <iostream>
-#include <math.h>
 #include <numeric>
 #include <stdlib.h>
 #include <string>
