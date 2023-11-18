@@ -7,6 +7,9 @@ set (CMAKE_CXX_STANDARD 11)
 # create the library
 add_library(mercatortile src/MercatorTile.cpp)
 
+include(GenerateExportHeader)
+generate_export_header(mercatortile)
+
 target_include_directories(mercatortile
     PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
@@ -25,6 +28,7 @@ configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/Config.cmake.in
 install(
     FILES
         ${CMAKE_CURRENT_SOURCE_DIR}/include/mercatortile/MercatorTile.h
+        ${CMAKE_CURRENT_BINARY_DIR}/mercatortile_export.h
     DESTINATION
         ${CMAKE_INSTALL_INCLUDEDIR}/mercatortile
 )
