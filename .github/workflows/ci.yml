@@ -1,0 +1,52 @@
+on:
+  push:
+    branches:
+      - main
+
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  Windows:
+    name: 'Windows'
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - uses: TheMrMilchmann/setup-msvc-dev@v3
+        with:
+          arch: x64
+
+      - name: Install CMake
+        uses: lukka/get-cmake@latest
+
+      - name: CMake configure
+        run: >
+          cmake --preset ninja-multi
+          -DCMAKE_C_COMPILER=cl
+          -DCMAKE_CXX_COMPILER=cl
+          -DBUILD_SHARED_LIBS=ON
+
+      - name: CMake build
+        run: cmake --build --preset release
+
+  ubuntu-latest:
+    name: 'Ubuntu'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: sudo apt-get install ninja-build
+
+      - name: CMake configure
+        run: >
+          cmake --preset ninja-multi
+          -DBUILD_SHARED_LIBS=ON
+
+      - name: CMake build
+        run: cmake --build --preset release

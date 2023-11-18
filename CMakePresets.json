@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 20,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "ninja-multi",
+      "binaryDir": "${sourceDir}/builds/${presetName}",
+      "generator": "Ninja Multi-Config",
+      "cacheVariables": {
+        "BUILD_EXAMPLE": true
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "debug",
+      "configuration": "Debug",
+      "configurePreset": "ninja-multi"
+    },
+    {
+      "name": "release",
+      "configuration": "Release",
+      "configurePreset": "ninja-multi"
+    }
+  ]
+}
