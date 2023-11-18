@@ -1,0 +1,9 @@
+BasedOnStyle: Microsoft
+AlignAfterOpenBracket: Align
+AlignConsecutiveMacros: 'true'
+AlignOperands: 'true'
+ColumnLimit: '0'
+Language: Cpp
+PointerAlignment: Right
+SpaceAfterCStyleCast: 'true'
+IndentCaseLabels: 'true'

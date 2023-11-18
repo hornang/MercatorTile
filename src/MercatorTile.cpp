@@ -1,12 +1,12 @@
 #include "MercatorTile.h"
-#include <math.h>
-#include <stdlib.h>
 #include <algorithm>
-#include <iostream>
-#include <vector>
 #include <deque>
-#include <string>
+#include <iostream>
+#include <math.h>
 #include <numeric>
+#include <stdlib.h>
+#include <string>
+#include <vector>
 
 using namespace std;
 namespace mercatortile
@@ -50,7 +50,7 @@ LngLatBbox bounds(const Tile &tile)
     LngLat lnglat_ul = ul(tile);
     bound.west = lnglat_ul.lng;
     bound.north = lnglat_ul.lat;
-    
+
     Tile tile_br = {tile.x + 1, tile.y + 1, tile.z};
     LngLat lnglat_br = ul(tile_br);
     bound.south = lnglat_br.lat;
@@ -114,10 +114,7 @@ Tile tile(const double &lng, const double &lat, const int &zoom)
 
     double lat_ = M_PI * lat / 180;
     out_tile.y = int(floor(
-        (1.0 - log(
-                   tan(lat_) + (1.0 / cos(lat_))) /
-                   M_PI) /
-        2.0 * pow(2.0, zoom)));
+        (1.0 - log(tan(lat_) + (1.0 / cos(lat_))) / M_PI) / 2.0 * pow(2.0, zoom)));
     out_tile.z = zoom;
 
     return out_tile;
@@ -204,7 +201,7 @@ std::vector<Tile> children(const Tile &tile, const int &zoom)
         return_tiles.push_back(Tile{front_tile.x * 2 + 1, front_tile.y * 2 + 1, front_tile.z + 1});
     }
 
-    //TODO: hight memory, not efficiency, or consider anthoer method.
+    // TODO: hight memory, not efficiency, or consider anthoer method.
     vector<Tile> return_vector_tiles(std::make_move_iterator(return_tiles.begin()),
                                      std::make_move_iterator(return_tiles.end()));
     // copy(return_tiles.begin(), return_tiles.end(), back_inserter(return_vector_tiles));
@@ -259,10 +256,10 @@ std::vector<Tile> tiles(const LngLatBbox &llbbox, const int &zoom)
 string quadkey(const Tile &tile)
 {
     string qk;
-    for (int z=tile.z; z>0; z--)
+    for (int z = tile.z; z > 0; z--)
     {
         int digit = 0;
-        int mask = 1 << (z-1);
+        int mask = 1 << (z - 1);
         if ((tile.x & mask) != 0)
         {
             digit++;
@@ -278,23 +275,22 @@ string quadkey(const Tile &tile)
     return qk;
 };
 
-
 Tile quadkey_to_tile(const std::string &qk)
 {
     int zoom = qk.length();
     if (zoom == 0)
     {
-        return Tile{0,0,0};
-    } 
+        return Tile{0, 0, 0};
+    }
     int xtile = 0;
     int ytile = 0;
-    for (int i = zoom; i>0; i--)
+    for (int i = zoom; i > 0; i--)
     {
-        int mask = 1 << (zoom-i);
-        int digit = qk[i-1]-'0';
+        int mask = 1 << (zoom - i);
+        int digit = qk[i - 1] - '0';
         switch (digit)
         {
-            
+
             case 0:
                 break;
             case 1:
@@ -312,7 +308,7 @@ Tile quadkey_to_tile(const std::string &qk)
                 break;
         }
     }
-    
+
     return Tile{xtile, ytile, zoom};
 }
 

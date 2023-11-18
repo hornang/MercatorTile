@@ -1,9 +1,9 @@
 #ifndef __MERCANTILE_H_
 #define __MERCANTILE_H_
 
-#include <vector>
-#include <string>
 #include <deque>
+#include <string>
+#include <vector>
 
 namespace mercatortile
 {
@@ -85,7 +85,6 @@ std::string quadkey(const Tile &tile);
 // Get the tile corresponding to a quadkey
 Tile quadkey_to_tile(const std::string &qk);
 
-
-} //namespace mercatortile
+} // namespace mercatortile
 
 #endif // !__MERCANTILE_H_
