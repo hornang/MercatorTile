@@ -18,3 +18,9 @@ install (TARGETS mercatortile
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/
         DESTINATION include    
     )
+
+option(BUILD_EXAMPLE "Build executable demonstrating basic usage" ON)
+
+if(BUILD_EXAMPLE)
+    add_subdirectory(examples)
+endif()
