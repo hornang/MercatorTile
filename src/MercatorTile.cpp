@@ -1,5 +1,5 @@
 #define _USE_MATH_DEFINES
-#include "MercatorTile.h"
+#include "mercatortile/MercatorTile.h"
 #include <algorithm>
 #include <cmath>
 #include <deque>
