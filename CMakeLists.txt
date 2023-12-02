@@ -51,8 +51,8 @@ install(
         ${CMAKE_INSTALL_LIBDIR}/cmake/mercatortile
 )
 
-option(BUILD_EXAMPLE "Build executable demonstrating basic usage" ON)
+option(MERCATORTILE_BUILD_EXAMPLE "Build executable demonstrating basic usage" ON)
 
-if(BUILD_EXAMPLE)
+if(MERCATORTILE_BUILD_EXAMPLE)
     add_subdirectory(examples)
 endif()

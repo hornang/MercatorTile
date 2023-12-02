@@ -11,7 +11,7 @@
       "binaryDir": "${sourceDir}/builds/${presetName}",
       "generator": "Ninja Multi-Config",
       "cacheVariables": {
-        "BUILD_EXAMPLE": true
+        "MERCATORTILE_BUILD_EXAMPLE": true
       }
     }
   ],
